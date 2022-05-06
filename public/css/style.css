@@ -1,0 +1,34 @@
+body {
+   font-family: 'Nunito', sans-serif;
+}
+
+main {
+	margin-left: 300px; /* Same as the width of the sidenav */
+    padding: 0px 10px;
+	}
+
+.leftSidebar {
+    height: 100%;
+    width: 160px; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 1;
+    top: 56px;
+    left: 0;
+    overflow-x: hidden;
+}
+
+.content {
+	display:grid;
+	grid-template-columns: 300px 300px 300px 300px 300px;
+	}
+
+.backet_nav {
+    width: 54px;
+    padding: 0;
+}
+
+.btn_nav {
+    background-color: #F8F9FA !important;
+    border: #F8F9FA !important;
+}
+

@@ -1,0 +1,5 @@
+HTTP Apache 2/4 - PHP8.0-
+
+PHP_8.0
+
+MySQL-8/0 - Win 10
