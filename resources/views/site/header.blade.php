@@ -1,64 +1,46 @@
 
 <!--Header_section-->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="{{url('/');}}">
-                   <img src="https://getbootstrap.com/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="30" height="24">
-                </a>
-
-            <div class="container-fluid">
-                <a class="navbar-brand" href="{{url('/');}}">SHOP</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-                </button>
-                    <div class="collapse navbar-collapse" id="navbarScroll">
-                      <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
-                        <li class="nav-item">
-                          <a class="nav-link active" aria-current="page" href="{{url('/');}}">Home</a>
-                        </li>
-                        @if (Route::has('login'))
-                            @auth
-                            <a class="nav-link" aria-current="page" href="#">{{ Auth::user()->name }}</a>
-                            <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-                            <a class="nav-link" aria-current="page" href="route('logout')"
-                            onclick="event.preventDefault();
-                                    this.closest('form').submit();">
-                            {{ __('Log Out') }}</a>
-                             </form>
-
-                            @else
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
-                        </li>
-                        @if (Route::has('register'))
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
-                        </li>
-                        @endif
-                            @endauth
-                        @endif
-
-                        <li class="nav-item ">
-                            <button type="button" class="btn btn-primary position-relative btn_nav">
-                            {{--Inbox--}}
-                            <a class="nav-link backet_nav" href="#{{--{{ route('basket') }}--}}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">
-
-                                <img src="assets\img\baskets.png" class="card-img-top" alt="..."></a>
-                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">99+
-                                    <span class="visually-hidden">unread messages</span>
-                                </span>
-                            </button>
-
-
-
-
-                        </li>
-                      </ul>
-                      <form class="d-flex">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
-                      </form>
-                </div>
-            </div>
+       <header class="main-header">
+        <div class="logotype-container"><a href="#" class="logotype-link"><img src="img/logo.png" alt="Логотип"></a></div>
+        <nav class="main-navigation">
+          <ul class="nav-list">
+            <li class="nav-list__item"><a href="#" class="nav-list__item__link">Главная</a></li>
+            <li class="nav-list__item"><a href="#" class="nav-list__item__link">Мои заказы</a></li>
+            <li class="nav-list__item"><a href="#" class="nav-list__item__link">Новости</a></li>
+            <li class="nav-list__item"><a href="#" class="nav-list__item__link">О компании</a></li>
+          </ul>
         </nav>
+        <div class="header-contact">
+          <div class="header-contact__phone"><a href="#" class="header-contact__phone-link">Телефон: 33-333-33</a></div>
+        </div>
+        <div class="header-container">
+          <div class="payment-container">
+            <div class="payment-basket__status">
+              <div class="payment-basket__status__icon-block"><a class="payment-basket__status__icon-block__link"><i class="fa fa-shopping-basket"></i></a></div>
+              <div class="payment-basket__status__basket"><span class="payment-basket__status__basket-value">0</span><span class="payment-basket__status__basket-value-descr">товаров</span></div>
+            </div>
+          </div>
+          <div class="authorization-block">
+              @if (Route::has('login'))
+                @auth
+                      <a href="#" class="authorization-block__link">{{ Auth::user()->name }}</a>
+                      <form method="POST" action="{{ route('logout') }}">
+                      @csrf
+                      <a href="route('logout')" class="authorization-block__link" onclick="event.preventDefault(); this.closest('form').submit();">{{ __('Log Out') }}</a>
+                      </form>
+              @else
+                          <!-- <a class="nav-link" href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a> -->
+                           <a href="{{ route('login') }}" class="authorization-block__link">Войти</a>
+
+                @if (Route::has('register'))
+                          <!-- <a class="nav-link" href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a> -->
+                          <a href="{{ route('register') }}" class="authorization-block__link">Регистрация</a></div>
+                @endif
+               @endauth
+              @endif
+
+         <!--    <a href="#" class="authorization-block__link">Регистрация</a>
+                                           <a href="#" class="authorization-block__link">Войти</a></div> -->
+        </div>
+      </header>
 <!--Header_section-->

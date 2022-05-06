@@ -12,7 +12,7 @@
 @foreach ($product as $prod)
     <div class="card h-100 card-body ">
         {{ $prod_t=$prod['id'] }}
-        <a class="nav-link" href="{{url("/product_page/$prod_t")}}"><img src="{{ $product[($prod['id'])-1]->img }}" class="card-img-top" alt="..."></a>
+        <a class="nav-link" href="{{url('/product_page/$prod_t')}}"><img src="{{ $product[($prod['id'])-1]->img }}" class="card-img-top" alt="..."></a>
         <h5 class="card-title">{{ $product[($prod['id'])-1]->name }}</h5>
         <p class="card-text">{{ $product[($prod['id'])-1]->desc }}</p>
     </div>
