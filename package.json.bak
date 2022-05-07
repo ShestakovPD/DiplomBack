@@ -1,17 +1,32 @@
 {
+    "private": false,
+    "scripts": {
+        "dev": "npm run development",
+        "development": "mix",
+        "watch": "mix watch",
+        "watch-poll": "mix watch -- --watch-options-poll=1000",
+        "hot": "mix watch --hot",
+        "prod": "npm run production",
+        "production": "mix --production"
+    },
+    "devDependencies": {
+        "@tailwindcss/forms": "^0.4.0",
+        "alpinejs": "^3.4.2",
+        "autoprefixer": "^10.4.2",
+        "axios": "^0.25",
+        "laravel-mix": "^6.0.6",
+        "lodash": "^4.17.19",
+        "postcss": "^8.4.6",
+        "postcss-import": "^14.0.2",
+        "tailwindcss": "^3.0.18"
+    }
+
   "name": "GameMagax",
   "version": "1.0.0",
   "description": "It`s project",
   "main": "index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
-	"dev": "npm run development",
-    "development": "mix",
-    "watch": "mix watch",
-    "watch-poll": "mix watch -- --watch-options-poll=1000",
-    "hot": "mix watch --hot",
-    "prod": "npm run production",
-    "production": "mix --production"
   },
   "author": "Ivan Popov",
   "license": "ISC",
@@ -32,15 +47,5 @@
     "imagemin-pngquant": "^4.2.2",
     "gulp-size": "^2.0.0",
     "gulp-jade": "^1.0.0"
-	"@tailwindcss/forms": "^0.4.0",
-    "alpinejs": "^3.4.2",
-    "autoprefixer": "^10.4.2",
-    "axios": "^0.25",
-    "laravel-mix": "^6.0.6",
-    "lodash": "^4.17.19",
-    "postcss": "^8.4.6",
-    "postcss-import": "^14.0.2",
-    "tailwindcss": "^3.0.18"
   }
-
 }

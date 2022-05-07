@@ -1,105 +1,41 @@
 
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <!DOCTYPE html>
-<html lang="ru">
-  <head>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
     <title>ГеймсМаркет</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link rel="stylesheet" href="css/libs.min.css">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/media.css">
-  </head>
-
-
-  <body>
+    <link rel="stylesheet" type="text/css" href="css/libs.min.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/media.css">
+    {{ Html::style('css/libs.min.css') }}
+    {{ Html::style('css/main.css') }}
+    {{ Html::style('css/media.css') }}
+</head>
+<body>
     <div class="main-wrapper">
-
-        <header>
-           @include('site.header')
-        </header>
-
-      <div class="middle">
-           @include('site.sidebar')
-
-
+    <header>
+        @include('site.header')
+    </header>
+        <div class="middle">
+        @include('site.sidebar')
         <div class="main-content">
-
-          <div class="content-top">
-            <div class="content-top__text">Купить игры недорого без регистрации смс с торента, получить компкт диск, скачать Steam игры после оплаты</div>
-          <!--   <div class="slider"><img src="img/slider.png" alt="Image" class="image-main"></div> -->
-          </div>
-          <div class="content-middle">
-            <div class="content-head__container">
-              <div class="content-head__title-wrap">
-                <div class="content-head__title-wrap__title bcg-title">Последние товары</div>
-              </div>
-              <div class="content-head__search-block">
-                <div class="search-container">
-                  <form class="search-container__form">
-                    <input type="text" class="search-container__form__input">
-                    <button class="search-container__form__btn">search</button>
-                  </form>
+            <div class="content-top">
+                <div class="content-top__text">Купить игры недорого без регистрации смс с торента, получить компкт диск,
+                    скачать Steam игры после оплаты
                 </div>
-              </div>
+                <!--   <div class="slider"><img src="img/slider.png" alt="Image" class="image-main"></div> -->
             </div>
-            <div class="content-main__container">
-              <div class="products-columns">
-                <div class="products-columns__item">
-                  <div class="products-columns__item__title-product"><a href="#" class="products-columns__item__title-product__link">The Witcher 3: Wild Hunt</a></div>
-                  <div class="products-columns__item__thumbnail"><a href="#" class="products-columns__item__thumbnail__link"><img src="img/cover/game-1.jpg" alt="Preview-image" class="products-columns__item__thumbnail__img"></a></div>
-                  <div class="products-columns__item__description"><span class="products-price">400 руб</span><a href="#" class="btn btn-blue">Купить</a></div>
-                </div>
-                <div class="products-columns__item">
-                  <div class="products-columns__item__title-product"><a href="#" class="products-columns__item__title-product__link">Overwatch</a></div>
-                  <div class="products-columns__item__thumbnail"><a href="#" class="products-columns__item__thumbnail__link"><img src="img/cover/game-2.jpg" alt="Preview-image" class="products-columns__item__thumbnail__img"></a></div>
-                  <div class="products-columns__item__description"><span class="products-price">400 руб</span><a href="#" class="btn btn-blue">Купить</a></div>
-                </div>
-                <div class="products-columns__item">
-                  <div class="products-columns__item__title-product"><a href="#" class="products-columns__item__title-product__link">Deus Ex: Mankind Divided</a></div>
-                  <div class="products-columns__item__thumbnail"><a href="#" class="products-columns__item__thumbnail__link"><img src="img/cover/game-3.jpg" alt="Preview-image" class="products-columns__item__thumbnail__img"></a></div>
-                  <div class="products-columns__item__description"><span class="products-price">400 руб</span><a href="#" class="btn btn-blue">Купить</a></div>
-                </div>
-                <div class="products-columns__item">
-                  <div class="products-columns__item__title-product"><a href="#" class="products-columns__item__title-product__link">World of WarCraft</a></div>
-                  <div class="products-columns__item__thumbnail"><a href="#" class="products-columns__item__thumbnail__link"><img src="img/cover/game-4.jpg" alt="Preview-image" class="products-columns__item__thumbnail__img"></a></div>
-                  <div class="products-columns__item__description"><span class="products-price">400 руб</span><a href="#" class="btn btn-blue">Купить</a></div>
-                </div>
-                <div class="products-columns__item">
-                  <div class="products-columns__item__title-product"><a href="#" class="products-columns__item__title-product__link">Call of Duty: Black ops II</a></div>
-                  <div class="products-columns__item__thumbnail"><a href="#" class="products-columns__item__thumbnail__link"><img src="img/cover/game-5.jpg" alt="Preview-image" class="products-columns__item__thumbnail__img"></a></div>
-                  <div class="products-columns__item__description"><span class="products-price">400 руб</span><a href="#" class="btn btn-blue">Купить</a></div>
-                </div>
-                <div class="products-columns__item">
-                  <div class="products-columns__item__title-product"><a href="#" class="products-columns__item__title-product__link">Batman</a></div>
-                  <div class="products-columns__item__thumbnail"><a href="#" class="products-columns__item__thumbnail__link"><img src="img/cover/game-6.jpg" alt="Preview-image" class="products-columns__item__thumbnail__img"></a></div>
-                  <div class="products-columns__item__description"><span class="products-price">400 руб</span><a href="#" class="btn btn-blue">Купить</a></div>
-                </div>
-              </div>
+        @include('site.content')
+                <div class="content-bottom"></div>
             </div>
-            <div class="content-footer__container">
-              <ul class="page-nav">
-                <li class="page-nav__item"><a href="#" class="page-nav__item__link"><i class="fa fa-angle-double-left"></i></a></li>
-                <li class="page-nav__item"><a href="#" class="page-nav__item__link">1</a></li>
-                <li class="page-nav__item"><a href="#" class="page-nav__item__link">2</a></li>
-                <li class="page-nav__item"><a href="#" class="page-nav__item__link">3</a></li>
-                <li class="page-nav__item"><a href="#" class="page-nav__item__link">4</a></li>
-                <li class="page-nav__item"><a href="#" class="page-nav__item__link">5</a></li>
-                <li class="page-nav__item"><a href="#" class="page-nav__item__link"><i class="fa fa-angle-double-right"></i></a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="content-bottom"></div>
         </div>
-      </div>
-
-     @include('site.footer')
-
+        @include('site.footer')
     </div>
-    <script src="js/main.js"></script>
-  </body>
+<script src="js/main.js"></script>
+</body>
 </html>
 
 

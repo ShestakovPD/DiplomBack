@@ -16,7 +16,7 @@ use App\Http\Controllers\ProductController;
 
 
 /*Route::get('/dashboard', function () {return view('dashboard');})->middleware(['auth'])->name('dashboard');*/
-Route::get('/', function () {return view('home');});
+Route::get('/', function () {return view('layouts.site');});
 
 Route::get('/dashboard', [ProductController::class, 'getAllProduct'])->middleware(['auth'])->name('dashboard');
 
@@ -27,7 +27,7 @@ Route::get('/register', function () {return view('register');
 })->name('register');
 
 Route::get('/',[ProductController::class, 'getAllProduct']);
-Route::get('/{categories}',[ProductController::class, 'getCategoryProduct']);
+Route::get('/{category}',[ProductController::class, 'getCategoryProduct']);
 Route::get('/product_page/{id}',[ProductController::class, 'getOneProduct']);
 
 require __DIR__.'/auth.php';

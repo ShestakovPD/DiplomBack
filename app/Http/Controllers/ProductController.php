@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Product;
 
@@ -17,19 +18,23 @@ class ProductController extends Controller
 
 		/*dd($product); */
 
-		return view('home', ['product'=>$product]);
+		return view('layouts.site', ['product'=>$product]);
 
 	}
 
-		public function getCategoryProduct($category){
+	public function getCategoryProduct($category){
 
 		$this->category=$category;
 
 		$product = Product::all();
+        $category_s = Category::all()->where('id',$this->category)->toArray();
+        $category_num=$category_s[$category-1]['name'];
+
 		$product = $product->where('categ_id', $this->category);
 
-		return view('home', [
+		return view('layouts.site', [
 			'product'=>$product,
+			'category_num'=> $category_num,
 		]);
 	}
 
@@ -37,14 +42,14 @@ class ProductController extends Controller
 
         $this->id=$id;
 
-        $product_id = Product::all();
-        $product_id = $product_id->where('id', $this->id)->toArray();
+        $product_id = Product::all()->where('id', $this->id)->toArray();
 
        /* var_dump($product_id);
         die;*/
 
-        return view('home', [
+        return view('layouts.site', [
             'product_id'=>$product_id,
+            'id'=>$id,
         ]);
     }
 }
