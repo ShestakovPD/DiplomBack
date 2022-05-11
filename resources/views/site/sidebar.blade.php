@@ -6,11 +6,14 @@
             <div class="sidebar-item__title">Категории</div>
             <div class="sidebar-item__content">
               <ul class="sidebar-category">
-                <li class="sidebar-category__item"><a href="{{url('/category/1')}}" class="sidebar-category__item__link">Action</a></li>
-                <li class="sidebar-category__item"><a href="{{url('/category/2')}}" class="sidebar-category__item__link">RPG</a></li>
-                <li class="sidebar-category__item"><a href="{{url('/category/3')}}" class="sidebar-category__item__link">Квесты</a></li>
-                <li class="sidebar-category__item"><a href="{{url('/category/4')}}" class="sidebar-category__item__link">Онлайн-игры</a></li>
-                <li class="sidebar-category__item"><a href="{{url('/category/5')}}" class="sidebar-category__item__link">Стратегии</a></li>
+
+                  @foreach ($category as $cat)
+                      @php
+                          $qq=$cat['id'];
+                      @endphp
+                      <li class="sidebar-category__item"><a href="{{url("/category/$qq")}}" class="sidebar-category__item__link">{{$cat['name']}}</a></li>
+                  @endforeach
+
               </ul>
             </div>
           </div>

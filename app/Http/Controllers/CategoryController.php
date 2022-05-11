@@ -16,16 +16,19 @@ class CategoryController extends Controller
     public function getCategoryProduct($category){
 
         $this->category=$category;
-
         $product = Product::all();
+
         $category_s = Category::all()->where('id',$this->category)->toArray();
         $category_num=$category_s[$category-1]['name'];
 
+        $category = Category::all();
         $product = $product->where('categ_id', $this->category);
 
         return view('layouts.site', [
             'product'=>$product,
             'category_num'=> $category_num,
+            'category'=> $category,
+
         ]);
     }
 }

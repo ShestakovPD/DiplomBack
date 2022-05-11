@@ -15,10 +15,12 @@ class ProductController extends Controller
 	public function getAllProduct(){
 
 		$product = Product::all();
+        $category = Category::all();
 
-		/*dd($product); */
-
-		return view('layouts.site', ['product'=>$product]);
+		return view('layouts.site', [
+            'product'=>$product,
+            'category'=> $category,
+        ]);
 
 	}
 
@@ -27,9 +29,6 @@ class ProductController extends Controller
         $this->id=$id;
 
         $product_id = Product::all()->where('id', $this->id)->toArray();
-
-       /* var_dump($product_id);
-        die;*/
 
         return view('layouts.site', [
             'product_id'=>$product_id,
