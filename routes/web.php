@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,7 +29,13 @@ Route::get('/register', function () {return view('register');
 })->name('register');
 
 Route::get('/',[ProductController::class, 'getAllProduct']);
-Route::get('/{category}',[ProductController::class, 'getCategoryProduct']);
+Route::get('/category/{category}',[CategoryController::class, 'getCategoryProduct']);
 Route::get('/product_page/{id}',[ProductController::class, 'getOneProduct']);
+
+
+Route::controller(OrderController::class)->group(function () {
+    Route::post('/order', 'setUserOrder')->name('order');
+    Route::match(['get', 'post'],'/order/basket', 'getAllOrder');
+});
 
 require __DIR__.'/auth.php';
