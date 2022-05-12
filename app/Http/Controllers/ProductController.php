@@ -29,10 +29,12 @@ class ProductController extends Controller
         $this->id=$id;
 
         $product_id = Product::all()->where('id', $this->id)->toArray();
+        $category = Category::all();
 
         return view('layouts.site', [
             'product_id'=>$product_id,
             'id'=>$id,
+            'category'=> $category,
         ]);
     }
 }

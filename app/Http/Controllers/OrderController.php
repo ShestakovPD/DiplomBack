@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Notification;
 use Swift_SmtpTransport;
 use Swift_Mailer;
 use Swift_Message;
@@ -24,6 +25,7 @@ class OrderController extends Controller
         $email_user=$_POST['email_user'];
         $orders = Order::all()->where('email_user',$email_user);
         $orderb = Order::where('email_user',$email_user)->get(['price'])->toArray();
+        $category = Category::all();
 
         /* Получаем цену всего заказа */
             $sum = 0;
@@ -34,6 +36,7 @@ class OrderController extends Controller
         return view('layouts.site', [
             'orders'=>$orders,
             'sum'=>$sum,
+            'category'=> $category,
         ]);
 
     }
@@ -57,6 +60,7 @@ class OrderController extends Controller
 
         $orders = Order::all()->where('email_user',$email_user);
         $orderb = Order::where('email_user',$email_user)->get(['price'])->toArray();
+        $category = Category::all();
 
         /* Получаем цену всего заказа */
         $sum = 0;
@@ -68,24 +72,33 @@ class OrderController extends Controller
         return view('layouts.site', [
             'orders'=>$orders,
             'sum'=>$sum,
+            'category'=> $category,
         ]);
 
     }
 
     public function sendMessage(){
 
+        $notif = Notification::get(['host', 'port','encryption','username','password','email'])->toArray();
+        $host = $notif[0]['host'];
+        $port = $notif[0]['port'];
+        $encryption = $notif[0]['encryption'];
+        $username = $notif[0]['username'];
+        $password = $notif[0]['password'];
+        $email = $notif[0]['email'];
+
         try {
-        $transport = (new Swift_SmtpTransport('smtp.yandex.ru', 465, 'ssl'))
-            ->setUsername('SPDyamail')
-            ->setPassword('pwbvlvodmuztlkez');
+        $transport = (new Swift_SmtpTransport("$host", "$port", "$encryption"))
+            ->setUsername("$username")
+            ->setPassword("$password");
 
         // Create the Mailer using your created Transport
         $mailer = new Swift_Mailer($transport);
 
         // Create a message
         $message = (new Swift_Message('Wonderful Subject'))
-            ->setFrom(['SPDyamail@yandex.ru' => 'SPDyamail@yandex.ru'])
-            ->setTo(['SPDyamail@yandex.ru'])
+            ->setFrom(["$email" => "$email"])
+            ->setTo(["$email"])
             ->setBody('Пользователь сделал заказ')
             /*->attach(Swift_Attachment::fromPath('test.php'))*/
         ;
@@ -95,10 +108,7 @@ class OrderController extends Controller
          var_dump($e->getMessage());
          echo '<pre>' . print_r($e->getTrace(), 1);
           }
-
     }
-
-
 
 }
 

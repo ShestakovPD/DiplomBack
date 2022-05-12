@@ -1,5 +1,9 @@
 
 <!--Header_section-->
+{{ Html::style('css\vendor\fontaw\css\font-awesome.min.css') }}
+
+
+
        <header class="main-header">
         <div class="logotype-container"><a href="{{url('/')}}" class="logotype-link"><img src="{{URL::asset('img/logo.png')}}" alt="Логотип"></a></div>
         <nav class="main-navigation">
@@ -16,22 +20,19 @@
         <div class="header-container">
           <div class="payment-container">
             <div class="payment-basket__status">
-              <div class="payment-basket__status__icon-block">
+              <div z-index="1000" class="payment-basket__status__icon-block">
 
-                  @if (Route::has('login'))
-                      @auth
-                  <form method="post" action="/order/basket">
+
+                  @if (Auth::check())
+                  <form id="bask" method="post" action="/order/basket">
                       @csrf
                       <input type="hidden" name="email_user" value='{{ Auth::user()->email }}'>
-                      <a href="#" class="payment-basket__status__icon-block__link">
-                          <i class="fa fa-shopping-basket"><input type="submit" name="submit" value=""></i>
-
+                      <a href="#" id="bask" class="payment-basket__status__icon-block__link">
+                          <input type="submit" name="bask" value=""><i class="fa fa-shopping-basket"></i>
                       </a>
                   </form>
                   @else
                       <a href="#" class="payment-basket__status__icon-block__link"><i class="fa fa-shopping-basket"></i></a>
-
-                      @endauth
                   @endif
 
               </div>

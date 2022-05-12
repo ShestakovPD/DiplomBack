@@ -13,6 +13,7 @@
     {{ Html::style('css/libs.min.css') }}
     {{ Html::style('css/main.css') }}
     {{ Html::style('css/media.css') }}
+    {{ Html::style('css\vendor\fontaw\css\font-awesome.min.css') }}
 </head>
 <body>
     <div class="main-wrapper">
@@ -26,7 +27,7 @@
                 <div class="content-top__text">Купить игры недорого без регистрации смс с торента, получить компкт диск,
                     скачать Steam игры после оплаты
                 </div>
-                <!--   <div class="slider"><img src="img/slider.png" alt="Image" class="image-main"></div> -->
+                <div class="sliders"><img src=" {{URL::asset('img/slider.png')}}  " alt="Image" class="image-main"></div>
             </div>
         @include('site.content')
                 <div class="content-bottom"></div>

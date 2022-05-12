@@ -2,7 +2,7 @@
     <x-auth-card>
         <x-slot name="logo">
             <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
+                 <img class="logotype-link" src="{{URL::asset('img/logo.png')}}">
             </a>
         </x-slot>
 
@@ -15,8 +15,8 @@
         <form method="POST" action="{{ route('login') }}">
             @csrf
 
-            <!-- Email Address 
- 
+            <!-- Email Address
+
             -->
             <div>
                 <x-label for="email" :value="__('Email')" />

@@ -1,5 +1,7 @@
 
 <!--Footer_section-->
+
+
        <footer class="footer">
         <div class="footer__footer-content">
           <div class="random-product-container">

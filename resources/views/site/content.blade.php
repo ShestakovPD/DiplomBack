@@ -50,7 +50,7 @@
             @endisset
 
 
-            @isset($product_id)
+        @isset($product_id)
 
     <div class="content-main__container">
         <div class="product-container">
@@ -62,15 +62,20 @@
                                   Цена: <b>{{ $product_id[$id-1]['price'] }}</b> руб
                                         </div>
 
-                             <form method="post" action="/order">
-                                 @csrf
-                                 <input type="hidden" name="name_prod" value="{{ $product_id[$id-1]['name'] }}">
-                                 <input type="hidden" name="price" value="{{ $product_id[$id-1]['price'] }}">
-                                 <input type="hidden" name="id_prod" value="{{ $product_id[$id-1]['id'] }}">
-                                 <input type="hidden" name="email_user" value='{{ Auth::user()->email }}'>
-                                 <input type="hidden" name="img" value='{{URL::asset($product_id[($id)-1]['img'])}}'>
-                                 <a href="#" class="btn btn-blue"> <input type="submit" name="submit" value="Купить" ></a>
-                             </form>
+
+                                 @if (Auth::check())
+                                     <form method="post" action="/order">
+                                         @csrf
+                                         <input type="hidden" name="name_prod" value="{{ $product_id[$id-1]['name'] }}">
+                                         <input type="hidden" name="price" value="{{ $product_id[$id-1]['price'] }}">
+                                         <input type="hidden" name="id_prod" value="{{ $product_id[$id-1]['id'] }}">
+                                         <input type="hidden" name="email_user" value='{{ Auth::user()->email }}'>
+                                         <input type="hidden" name="img" value='{{URL::asset($product_id[($id)-1]['img'])}}'>
+                                         <a href="#"> <input type="submit" name="submit" value="Купить" class="btn btn-blue"></a>
+                                     </form>
+                                 @else
+                                     <a href="{{url('/login')}}" class="btn btn-blue">Купить</a>
+                                 @endif
 
                                     </div>
                                     <div class="product-container__content-text__description">
