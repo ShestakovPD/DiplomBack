@@ -18,27 +18,31 @@ use App\Http\Controllers\OrderController;
 
 
 /*Route::get('/dashboard', function () {return view('dashboard');})->middleware(['auth'])->name('dashboard');*/
-Route::get('/', function () {return view('layouts.site');});
+Route::get('/', function () {
+    return view('layouts.site');
+});
 
 Route::get('/dashboard', [ProductController::class, 'getAllProduct'])->middleware(['auth'])->name('dashboard');
 
-Route::get('/login', function () {return view('login');
+Route::get('/login', function () {
+    return view('login');
 })->name('login');
 
-Route::get('/register', function () {return view('register');
+Route::get('/register', function () {
+    return view('register');
 })->name('register');
 
-Route::get('/',[ProductController::class, 'getAllProduct']);
-Route::get('/category/{category}',[CategoryController::class, 'getCategoryProduct']);
-Route::get('/product_page/{id}',[ProductController::class, 'getOneProduct']);
+Route::get('/', [ProductController::class, 'getAllProduct']);
+Route::get('/category/{category}', [CategoryController::class, 'getCategoryProduct']);
+Route::get('/product_page/{id}', [ProductController::class, 'getOneProduct']);
 
 
 Route::controller(OrderController::class)->group(function () {
     Route::post('/order', 'setUserOrder')->name('order');
-    Route::match(['get', 'post'],'/order/basket', 'getAllOrder');
+    Route::match(['get', 'post'], '/order/basket', 'getAllOrder');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
 
 Route::group(['prefix' => 'admin'], function () {

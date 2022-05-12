@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -16,25 +14,26 @@
     {{ Html::style('css\vendor\fontaw\css\font-awesome.min.css') }}
 </head>
 <body>
-    <div class="main-wrapper">
+<div class="main-wrapper">
     <header>
         @include('site.header')
     </header>
-        <div class="middle">
+    <div class="middle">
         @include('site.sidebar')
         <div class="main-content">
             <div class="content-top">
                 <div class="content-top__text">Купить игры недорого без регистрации смс с торента, получить компкт диск,
                     скачать Steam игры после оплаты
                 </div>
-                <div class="sliders"><img src=" {{URL::asset('img/slider.png')}}  " alt="Image" class="image-main"></div>
+                <div class="sliders"><img src=" {{URL::asset('img/slider.png')}}  " alt="Image" class="image-main">
+                </div>
             </div>
-        @include('site.content')
-                <div class="content-bottom"></div>
-            </div>
+            @include('site.content')
+            <div class="content-bottom"></div>
         </div>
-        @include('site.footer')
     </div>
+    @include('site.footer')
+</div>
 <script src="js/main.js"></script>
 </body>
 </html>

@@ -18,36 +18,40 @@ class OrderController extends Controller
     public $product;
     public $order;
     public $orders;
-    public $transport ;
+    public $transport;
 
-    public function getAllOrder(){
+    public function getAllOrder()
+    {
 
-        $email_user=$_POST['email_user'];
-        $orders = Order::all()->where('email_user',$email_user);
-        $orderb = Order::where('email_user',$email_user)->get(['price'])->toArray();
+        $email_user = $_POST['email_user'];
+        $orders = Order::all()->where('email_user', $email_user);
+        $orderb = Order::where('email_user', $email_user)->get(['price'])->toArray();
         $category = Category::all();
 
         /* Получаем цену всего заказа */
-            $sum = 0;
-            foreach($orderb as $elem=>$val)
-                foreach ($val as $w)
+        $sum = 0;
+        foreach ($orderb as $elem => $val) {
+            foreach ($val as $w) {
                 $sum += $w;
+            }
+        }
 
         return view('layouts.site', [
-            'orders'=>$orders,
-            'sum'=>$sum,
-            'category'=> $category,
+            'orders' => $orders,
+            'sum' => $sum,
+            'category' => $category,
         ]);
 
     }
 
-    public function setUserOrder(){
+    public function setUserOrder()
+    {
 
-        $name_prod=$_POST['name_prod'];
-        $price=$_POST['price'];
-        $id_prod=$_POST['id_prod'];
-        $email_user=$_POST['email_user'];
-        $img=$_POST['img'];
+        $name_prod = $_POST['name_prod'];
+        $price = $_POST['price'];
+        $id_prod = $_POST['id_prod'];
+        $email_user = $_POST['email_user'];
+        $img = $_POST['img'];
 
         $order = new Order();
         $order->name_prod = $name_prod;
@@ -58,28 +62,31 @@ class OrderController extends Controller
 
         $order->save();
 
-        $orders = Order::all()->where('email_user',$email_user);
-        $orderb = Order::where('email_user',$email_user)->get(['price'])->toArray();
+        $orders = Order::all()->where('email_user', $email_user);
+        $orderb = Order::where('email_user', $email_user)->get(['price'])->toArray();
         $category = Category::all();
 
         /* Получаем цену всего заказа */
         $sum = 0;
-        foreach($orderb as $elem=>$val)
-            foreach ($val as $w)
+        foreach ($orderb as $elem => $val) {
+            foreach ($val as $w) {
                 $sum += $w;
+            }
+        }
 
-            $this->sendMessage($order);
+        $this->sendMessage($order);
         return view('layouts.site', [
-            'orders'=>$orders,
-            'sum'=>$sum,
-            'category'=> $category,
+            'orders' => $orders,
+            'sum' => $sum,
+            'category' => $category,
         ]);
 
     }
 
-    public function sendMessage(){
+    public function sendMessage()
+    {
 
-        $notif = Notification::get(['host', 'port','encryption','username','password','email'])->toArray();
+        $notif = Notification::get(['host', 'port', 'encryption', 'username', 'password', 'email'])->toArray();
         $host = $notif[0]['host'];
         $port = $notif[0]['port'];
         $encryption = $notif[0]['encryption'];
@@ -88,26 +95,25 @@ class OrderController extends Controller
         $email = $notif[0]['email'];
 
         try {
-        $transport = (new Swift_SmtpTransport("$host", "$port", "$encryption"))
-            ->setUsername("$username")
-            ->setPassword("$password");
+            $transport = (new Swift_SmtpTransport("$host", "$port", "$encryption"))
+                ->setUsername("$username")
+                ->setPassword("$password");
 
-        // Create the Mailer using your created Transport
-        $mailer = new Swift_Mailer($transport);
+            // Create the Mailer using your created Transport
+            $mailer = new Swift_Mailer($transport);
 
-        // Create a message
-        $message = (new Swift_Message('Wonderful Subject'))
-            ->setFrom(["$email" => "$email"])
-            ->setTo(["$email"])
-            ->setBody('Пользователь сделал заказ')
-            /*->attach(Swift_Attachment::fromPath('test.php'))*/
-        ;
+            // Create a message
+            $message = (new Swift_Message('Wonderful Subject'))
+                ->setFrom(["$email" => "$email"])
+                ->setTo(["$email"])
+                ->setBody('Пользователь сделал заказ')/*->attach(Swift_Attachment::fromPath('test.php'))*/
+            ;
             return $mailer->send($message);
-     /*   var_dump(['res' => $result]);*/
-    } catch (Exception $e) {
-         var_dump($e->getMessage());
-         echo '<pre>' . print_r($e->getTrace(), 1);
-          }
+            /*   var_dump(['res' => $result]);*/
+        } catch (Exception $e) {
+            var_dump($e->getMessage());
+            echo '<pre>' . print_r($e->getTrace(), 1);
+        }
     }
 
 }
